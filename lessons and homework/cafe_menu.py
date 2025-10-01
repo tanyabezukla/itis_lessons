@@ -24,7 +24,7 @@ def show_menu_sorted():
             
     else:
         print("Введены не верные данные")
-        return
+        show_menu_sorted()
 
 
  
