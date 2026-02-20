@@ -1,0 +1,69 @@
+
+class NotEnoughMoney(Exception):
+    pass
+
+user_name = input('enter a name: ').strip().lower()
+user_age = int(input('eneter your age: '))
+count_tickets = int(input('Price of one ticker: 500 \nHow many tickets do you want to buy? :'))
+user_budget = int(input('Enter your budget: '))
+
+class Registration():
+
+
+    def validate_username(self, user_name):
+        if len(user_name) == '' or user_name ==  '':
+            raise ValueError('\nName can`t be empty')
+        
+    def validate_age(self, user_age):
+        if not isinstance(user_name, str):
+            raise TypeError('\nAge has to be an integer')
+        if user_age < 12 :
+            raise ValueError('\nAge is too small')
+        
+    def validate_tickets(self, count_tickets):
+        if not isinstance(count_tickets, int):
+            raise TypeError('\nCount of tickets has to be a number')
+        if not (0 < count_tickets <= 5) :
+            raise ValueError('\nIncorrect number of tickets')
+        
+    def validate_budget(self,user_budget):
+        if not isinstance(user_budget, int):
+            raise TypeError('\nBudget has to be a number')
+        if user_budget < 0:
+            raise ValueError("\nIncorrect budget")
+        
+        if user_budget < 500:
+            raise NotEnoughMoney('\nNot enough money for buying tickets')
+        
+    def validate(self, user_name, user_age, count_tickets, user_budget):
+        self.validate_username(user_name)
+        self.validate_age(user_age)
+        self.validate_tickets(count_tickets)
+        self.validate_budget(user_budget)
+
+    def calculate_total(self):
+        total_cost = count_tickets * 500
+        return total_cost
+    
+    def check_enough_money(self):
+        total = self.calculate_total()
+        if user_budget < total:
+            raise NotEnoughMoney('\nYou dont have enogh money for buying tickets')
+        print('Tickets were bought')
+
+
+try:
+    reg = Registration()
+    reg.validate(user_name, user_age, count_tickets, user_budget)
+    reg.check_enough_money()
+
+except Exception as e:
+    print(e)
+
+
+
+     
+        
+    
+
+
